@@ -25,6 +25,7 @@ UTA-VIRT-FSF-FT-06-2023-U-LOLC Repo in GitLab.
 https://math.stackexchange.com/questions/2335330/probability-of-getting-all-four-answers-right-with-true-and-false-in-each-quest
 
 https://github.com/coding-boot-camp/friendly-parakeet
+
 ## License
 
 MIT License
