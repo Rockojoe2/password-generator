@@ -31,10 +31,15 @@ const specialCharactersBank = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")",
 
 //Function generatePassword
 function generatePassword(){
-
-  //TODO - Add a "Please enter a number between 8 to 128" popup if passwordLength is not between 8 to 128 characters
   
   var passwordLength = prompt("Please enter length of your password (between 8 to 128 characters", "Enter how many characters you want your password to be"); //Will determine how long password will be
+  var intPasswordLength = parseInt(passwordLength); //Used to make the passwordLength from string to a number
+  if(intPasswordLength < 8 || intPasswordLength > 128){
+    window.alert("ERROR: Please enter a password between 8 and 128 characters.");
+    return "Please enter a valid password length between 8 to 128";
+  }
+
+
   var lowerCaseLetters = window.confirm("Include lowercase?"); //True or false statement
   var upperCaseLetters = window.confirm("Include uppercase?"); //True or false statement
   var numericalNumbers = window.confirm("Include numerical numbers?"); //True or false statement
@@ -62,126 +67,127 @@ function generatePassword(){
 
 
   var randomPasswordGenerated = ""; //Empty password to keep adding onto. Length here will be 0.
-  var intPasswordLength = parseInt(passwordLength); //Used to make the passwordLength from string to a number
 
-  // console.log("Response 1: " + passwordLength);
-  // console.log(typeof passwordLength);
-  // console.log(typeof intPasswordLength);
-  // console.log("Response 2: " + lowerCaseLetters);
-  // console.log("Response 3: " + upperCaseLetters);
-  // console.log("Response 4: " + numericalNumbers);
-  // console.log("Response 5: " + specialCharacters);
  
   // Below while statement will generate the password based on choices the user made
-  //TODO - Currently the random password is generated with the pattern of lower case, upper case, number, special character. Need to make it completely random.
-  //Could maybe come up with a word bank for every scenario and an if statement for every scenario, but that would be too long I think. There has to be a more efficient way. 
-  //Create an option string before while loop. Use concat of the two variables. Example of how concat looks - var galaxy = constellations.concat(planets); var galaxy = new variable and constellations and planets were the previous variables.
 
-  var key = true;
+  var key = true; //Need the key variable to exit the box if all false
   while(intPasswordLength > randomPasswordGenerated.length && key === true)
-  {
-    var combinedPassword = "";
-    //1
-    if(lowerCaseLetters == true && upperCaseLetters == true && numericalNumbers == true && specialCharacters == true){
-      combinedPasswordBank = lowerCaseLetterBank.concat(upperCaseLetterBank, numericalNumbersBank, specialCharactersBank);
-      randomPasswordGenerated += combinedPasswordBank[Math.floor(Math.random() * combinedPasswordBank.length)]; 
-    }
+    {
+      var combinedPassword = "";
+      //1
+      if(lowerCaseLetters == true && upperCaseLetters == true && numericalNumbers == true && specialCharacters == true)
+      {
+          combinedPasswordBank = lowerCaseLetterBank.concat(upperCaseLetterBank, numericalNumbersBank, specialCharactersBank);
+          randomPasswordGenerated += combinedPasswordBank[Math.floor(Math.random() * combinedPasswordBank.length)]; 
+      }
 
-    //2  
-    if(lowerCaseLetters == true && upperCaseLetters == false && numericalNumbers == true && specialCharacters == true){
-      combinedPasswordBank = lowerCaseLetterBank.concat(numericalNumbersBank, specialCharactersBank);
-      randomPasswordGenerated += combinedPasswordBank[Math.floor(Math.random() * combinedPasswordBank.length)]; 
-    }
+      //2  
+      if(lowerCaseLetters == true && upperCaseLetters == false && numericalNumbers == true && specialCharacters == true)
+      {
+          combinedPasswordBank = lowerCaseLetterBank.concat(numericalNumbersBank, specialCharactersBank);
+          randomPasswordGenerated += combinedPasswordBank[Math.floor(Math.random() * combinedPasswordBank.length)]; 
+      }
 
-    //3
-    if(lowerCaseLetters == true && upperCaseLetters == true && numericalNumbers == false && specialCharacters == true){
-      combinedPasswordBank = lowerCaseLetterBank.concat(upperCaseLetterBank, specialCharactersBank);
-      randomPasswordGenerated += combinedPasswordBank[Math.floor(Math.random() * combinedPasswordBank.length)]; 
-    }
+      //3
+      if(lowerCaseLetters == true && upperCaseLetters == true && numericalNumbers == false && specialCharacters == true)
+      {
+          combinedPasswordBank = lowerCaseLetterBank.concat(upperCaseLetterBank, specialCharactersBank);
+          randomPasswordGenerated += combinedPasswordBank[Math.floor(Math.random() * combinedPasswordBank.length)]; 
+      }
 
-    //4
-    if(lowerCaseLetters == true && upperCaseLetters == false && numericalNumbers == false && specialCharacters == true){
-      combinedPasswordBank = lowerCaseLetterBank.concat(specialCharactersBank);
-      randomPasswordGenerated += combinedPasswordBank[Math.floor(Math.random() * combinedPasswordBank.length)]; 
-    }
+      //4
+      if(lowerCaseLetters == true && upperCaseLetters == false && numericalNumbers == false && specialCharacters == true)
+      {
+          combinedPasswordBank = lowerCaseLetterBank.concat(specialCharactersBank);
+          randomPasswordGenerated += combinedPasswordBank[Math.floor(Math.random() * combinedPasswordBank.length)]; 
+      }
 
-    //5
-    if(lowerCaseLetters == true && upperCaseLetters == true && numericalNumbers == true && specialCharacters == false){
-      combinedPasswordBank = lowerCaseLetterBank.concat(upperCaseLetterBank, numericalNumbersBank);
-      randomPasswordGenerated += combinedPasswordBank[Math.floor(Math.random() * combinedPasswordBank.length)]; 
-    }
+      //5
+      if(lowerCaseLetters == true && upperCaseLetters == true && numericalNumbers == true && specialCharacters == false)
+      {
+        combinedPasswordBank = lowerCaseLetterBank.concat(upperCaseLetterBank, numericalNumbersBank);
+        randomPasswordGenerated += combinedPasswordBank[Math.floor(Math.random() * combinedPasswordBank.length)]; 
+      }
 
     //6
-    if(lowerCaseLetters == true && upperCaseLetters == false && numericalNumbers == true && specialCharacters == false){
-      combinedPasswordBank = lowerCaseLetterBank.concat(numericalNumbersBank);
-      randomPasswordGenerated += combinedPasswordBank[Math.floor(Math.random() * combinedPasswordBank.length)]; 
-    }
+      if(lowerCaseLetters == true && upperCaseLetters == false && numericalNumbers == true && specialCharacters == false)
+      {
+        combinedPasswordBank = lowerCaseLetterBank.concat(numericalNumbersBank);
+        randomPasswordGenerated += combinedPasswordBank[Math.floor(Math.random() * combinedPasswordBank.length)]; 
+      }
     
-    //7
-    if(lowerCaseLetters == true && upperCaseLetters == true && numericalNumbers == false && specialCharacters == false){
-      combinedPasswordBank = lowerCaseLetterBank.concat(upperCaseLetterBank);
-      randomPasswordGenerated += combinedPasswordBank[Math.floor(Math.random() * combinedPasswordBank.length)]; 
-    }
+      //7
+      if(lowerCaseLetters == true && upperCaseLetters == true && numericalNumbers == false && specialCharacters == false)
+      {
+        combinedPasswordBank = lowerCaseLetterBank.concat(upperCaseLetterBank);
+        randomPasswordGenerated += combinedPasswordBank[Math.floor(Math.random() * combinedPasswordBank.length)]; 
+      }
 
-    //8
-    if(lowerCaseLetters == true && upperCaseLetters == false && numericalNumbers == false && specialCharacters == false){
-      combinedPasswordBank = lowerCaseLetterBank;
-      randomPasswordGenerated += combinedPasswordBank[Math.floor(Math.random() * combinedPasswordBank.length)]; 
-    }
+      //8
+      if(lowerCaseLetters == true && upperCaseLetters == false && numericalNumbers == false && specialCharacters == false)
+      {
+        combinedPasswordBank = lowerCaseLetterBank;
+        randomPasswordGenerated += combinedPasswordBank[Math.floor(Math.random() * combinedPasswordBank.length)]; 
+      }
 
-    //9
-    if(lowerCaseLetters == false && upperCaseLetters == true && numericalNumbers == true && specialCharacters == true){
-      combinedPasswordBank = upperCaseLetterBank.concat(numericalNumbersBank, specialCharactersBank);
-      randomPasswordGenerated += combinedPasswordBank[Math.floor(Math.random() * combinedPasswordBank.length)]; 
-    }
+      //9
+      if(lowerCaseLetters == false && upperCaseLetters == true && numericalNumbers == true && specialCharacters == true)
+      {
+        combinedPasswordBank = upperCaseLetterBank.concat(numericalNumbersBank, specialCharactersBank);
+        randomPasswordGenerated += combinedPasswordBank[Math.floor(Math.random() * combinedPasswordBank.length)]; 
+      }
 
-     //10
-    if(lowerCaseLetters == false && upperCaseLetters == false && numericalNumbers == true && specialCharacters == true){
-      combinedPasswordBank = numericalNumbersBank.concat(specialCharactersBank);
-      randomPasswordGenerated += combinedPasswordBank[Math.floor(Math.random() * combinedPasswordBank.length)]; 
-    }
+      //10
+      if(lowerCaseLetters == false && upperCaseLetters == false && numericalNumbers == true && specialCharacters == true)
+      {
+        combinedPasswordBank = numericalNumbersBank.concat(specialCharactersBank);
+        randomPasswordGenerated += combinedPasswordBank[Math.floor(Math.random() * combinedPasswordBank.length)]; 
+      }
 
-     //11
-    if(lowerCaseLetters == false && upperCaseLetters == true && numericalNumbers == false && specialCharacters == true){
-      combinedPasswordBank = upperCaseLetterBank.concat(specialCharactersBank);
-      randomPasswordGenerated += combinedPasswordBank[Math.floor(Math.random() * combinedPasswordBank.length)]; 
-    }
+      //11
+      if(lowerCaseLetters == false && upperCaseLetters == true && numericalNumbers == false && specialCharacters == true)
+      {
+        combinedPasswordBank = upperCaseLetterBank.concat(specialCharactersBank);
+        randomPasswordGenerated += combinedPasswordBank[Math.floor(Math.random() * combinedPasswordBank.length)]; 
+      }
 
-     //12
-    if(lowerCaseLetters == false && upperCaseLetters == false && numericalNumbers == false && specialCharacters == true){
-      combinedPasswordBank = specialCharactersBank;
-      randomPasswordGenerated += combinedPasswordBank[Math.floor(Math.random() * combinedPasswordBank.length)]; 
-    }
+      //12
+      if(lowerCaseLetters == false && upperCaseLetters == false && numericalNumbers == false && specialCharacters == true)
+      {
+        combinedPasswordBank = specialCharactersBank;
+        randomPasswordGenerated += combinedPasswordBank[Math.floor(Math.random() * combinedPasswordBank.length)]; 
+      }
 
-     //13
-    if(lowerCaseLetters == false && upperCaseLetters == true && numericalNumbers == true && specialCharacters == false){
-      combinedPasswordBank = upperCaseLetterBank.concat(numericalNumbersBank);
-      randomPasswordGenerated += combinedPasswordBank[Math.floor(Math.random() * combinedPasswordBank.length)]; 
-    }
+      //13
+      if(lowerCaseLetters == false && upperCaseLetters == true && numericalNumbers == true && specialCharacters == false)
+      {
+        combinedPasswordBank = upperCaseLetterBank.concat(numericalNumbersBank);
+        randomPasswordGenerated += combinedPasswordBank[Math.floor(Math.random() * combinedPasswordBank.length)]; 
+      }
 
-     //14
-    if(lowerCaseLetters == false && upperCaseLetters == false && numericalNumbers == true && specialCharacters == false){
-      combinedPasswordBank = numericalNumbersBank;
-      randomPasswordGenerated += combinedPasswordBank[Math.floor(Math.random() * combinedPasswordBank.length)]; 
-    }
+      //14
+      if(lowerCaseLetters == false && upperCaseLetters == false && numericalNumbers == true && specialCharacters == false)
+      {
+        combinedPasswordBank = numericalNumbersBank;
+        randomPasswordGenerated += combinedPasswordBank[Math.floor(Math.random() * combinedPasswordBank.length)]; 
+      }
 
-     //15
-    if(lowerCaseLetters == false && upperCaseLetters == true && numericalNumbers == false && specialCharacters == false){
-      combinedPasswordBank = upperCaseLetterBank;
-      randomPasswordGenerated += combinedPasswordBank[Math.floor(Math.random() * combinedPasswordBank.length)]; 
-    }
+      //15
+      if(lowerCaseLetters == false && upperCaseLetters == true && numericalNumbers == false && specialCharacters == false)
+      {
+        combinedPasswordBank = upperCaseLetterBank;
+        randomPasswordGenerated += combinedPasswordBank[Math.floor(Math.random() * combinedPasswordBank.length)]; 
+      }
 
-    //16
-    if(lowerCaseLetters == false && upperCaseLetters == false && numericalNumbers == false && specialCharacters == false){
-      window.alert("ERROR: Please select yes to at least one to create your password."); //This message will appear if user clicked cancel to everything. 
-      key = false; //Set key to false here so that the window alert will close
-    }
-  }
-
-  
-
-
-
+      //16
+      if(lowerCaseLetters == false && upperCaseLetters == false && numericalNumbers == false && specialCharacters == false)
+      {
+        window.alert("ERROR: Please select yes to at least one to create your password."); //This message will appear if user clicked cancel to everything. 
+        key = false; //Set key to false here so that the window alert will close
+      }
+  } 
+ 
   return [randomPasswordGenerated];
 }
 
